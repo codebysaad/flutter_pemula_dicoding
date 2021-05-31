@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -8,13 +9,13 @@ class Profile extends StatelessWidget {
         appBar: AppBar(
           title: new Text('Profile'),
         ),
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage("add you image URL here "),
+                        image: AssetImage('assets/images/background.png'),
                         fit: BoxFit.cover)),
                 child: Container(
                   width: double.infinity,
@@ -22,18 +23,17 @@ class Profile extends StatelessWidget {
                   child: Container(
                     alignment: Alignment(0.0, 2.5),
                     child: CircleAvatar(
-                      backgroundImage:
-                          NetworkImage("Add you profile DP image URL here "),
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
                       radius: 60.0,
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 60,
+                height: 70,
               ),
               Text(
-                "Rajat Palankar",
+                "Sa\'ad Fauzi",
                 style: TextStyle(
                     fontSize: 25.0,
                     color: Colors.blueGrey,
@@ -44,7 +44,7 @@ class Profile extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "Belgaum, India",
+                "Kudus, Jawa Tengah",
                 style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black45,
@@ -55,7 +55,7 @@ class Profile extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "App Developer at XYZ Company",
+                "Mobile Developer at Anak Menara",
                 style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black45,
@@ -64,28 +64,6 @@ class Profile extends StatelessWidget {
               ),
               SizedBox(
                 height: 10,
-              ),
-              Card(
-                  margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-                  elevation: 2.0,
-                  child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-                      child: Text(
-                        "Skill Sets",
-                        style: TextStyle(
-                            letterSpacing: 2.0, fontWeight: FontWeight.w300),
-                      ))),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "App Developer || Digital Marketer",
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black45,
-                    letterSpacing: 2.0,
-                    fontWeight: FontWeight.w300),
               ),
               Card(
                 margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
@@ -108,7 +86,7 @@ class Profile extends StatelessWidget {
                               height: 7,
                             ),
                             Text(
-                              "15",
+                              "3",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22.0,
@@ -121,7 +99,7 @@ class Profile extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              "Followers",
+                              "Clients",
                               style: TextStyle(
                                   color: Colors.blueAccent,
                                   fontSize: 22.0,
@@ -131,7 +109,7 @@ class Profile extends StatelessWidget {
                               height: 7,
                             ),
                             Text(
-                              "2000",
+                              "2",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22.0,
@@ -144,14 +122,18 @@ class Profile extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RaisedButton(
-                    onPressed: () {},
+                  MaterialButton(
+                    onPressed: () async {
+                      const url = 'https://www.linkedin.com/in/saad-fauzi-456690141/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Url Not Found';
+                      }
+                    },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0),
                     ),
@@ -160,12 +142,11 @@ class Profile extends StatelessWidget {
                         gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Colors.pink, Colors.redAccent]),
+                            colors: [Colors.blueAccent, Colors.lightBlueAccent]),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       child: Container(
                         constraints: BoxConstraints(
-                          maxWidth: 100.0,
                           maxHeight: 40.0,
                         ),
                         alignment: Alignment.center,
@@ -175,13 +156,20 @@ class Profile extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 12.0,
                               letterSpacing: 2.0,
-                              fontWeight: FontWeight.w300),
+                              fontWeight: FontWeight.w800),
                         ),
                       ),
                     ),
                   ),
-                  RaisedButton(
-                    onPressed: () {},
+                  MaterialButton(
+                    onPressed: () async {
+                      const url = 'https://github.com/codebysaad';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Url Not Found';
+                      }
+                    },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0),
                     ),
@@ -190,12 +178,11 @@ class Profile extends StatelessWidget {
                         gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Colors.pink, Colors.redAccent]),
+                            colors: [Colors.blueAccent, Colors.lightBlueAccent]),
                         borderRadius: BorderRadius.circular(80.0),
                       ),
                       child: Container(
                         constraints: BoxConstraints(
-                          maxWidth: 100.0,
                           maxHeight: 40.0,
                         ),
                         alignment: Alignment.center,
@@ -205,7 +192,7 @@ class Profile extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 12.0,
                               letterSpacing: 2.0,
-                              fontWeight: FontWeight.w300),
+                              fontWeight: FontWeight.w800),
                         ),
                       ),
                     ),
